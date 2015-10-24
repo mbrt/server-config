@@ -6,7 +6,7 @@ USER=michele
 # packages
 apt-get update
 apt-get upgrade -y
-apt-get install -y sudo curl
+apt-get install -y sudo curl man
 # date time
 dpkg-reconfigure tzdata
 # fix locale
