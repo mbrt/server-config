@@ -4,16 +4,19 @@
 USER=michele
 
 # packages
-apt-get -y install sudo curl
-# add admin user
-useradd -G $USER,sudo -d /home/$USER $USER
-mkdir /home/$USER
-chown $USER:$USER /home/$USER
+apt-get update
+apt-get upgrade -y
+apt-get install -y sudo curl
+# date time
+dpkg-reconfigure tzdata
 # fix locale
 locale-gen en_US en_US.UTF-8
 dpkg-reconfigure locales
 
-# message
-echo "-- WARNING --"
-echo "Remember to set $USER password with command"
-echo "passwd $USER"
+# add admin user
+adduser $USER
+usermod -a -G sudo $USER
+
+# user setup
+su $USER
+ssh-keygen
