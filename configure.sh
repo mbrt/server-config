@@ -8,12 +8,15 @@ FTP_USER_HOME=/home/ftpr
 # packages
 apt-get update
 apt-get upgrade -y
-apt-get install -y sudo curl man
+apt-get install -y sudo curl man ufw
 # date time
 dpkg-reconfigure tzdata
 # fix locale
 locale-gen en_US en_US.UTF-8
 dpkg-reconfigure locales
+# firewall rules
+ufw limit OpenSSH
+ufw enable
 
 # add admin user
 adduser $USER
