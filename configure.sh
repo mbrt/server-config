@@ -10,10 +10,12 @@ apt-get update
 apt-get upgrade -y
 apt-get install -y sudo curl man ufw
 # date time
-dpkg-reconfigure tzdata
+echo "Europe/London" > /etc/timezone
+dpkg-reconfigure -f noninteractive tzdata
 # fix locale
+echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
 locale-gen en_US en_US.UTF-8
-dpkg-reconfigure locales
+dpkg-reconfigure -f noninteractive locales
 # firewall rules
 ufw limit OpenSSH
 ufw enable
